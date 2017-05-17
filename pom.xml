@@ -4,7 +4,7 @@
 	<groupId>com.github.richygreat</groupId>
 	<artifactId>service</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>Common Util</name>
+	<name>Service</name>
 	<description>Service project</description>
 	<url>http://common-rgauth.rhcloud.com</url>
 
