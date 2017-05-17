@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.richygreat</groupId>
 	<artifactId>service</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>Service</name>
 	<description>Service project</description>
 	<url>http://common-rgauth.rhcloud.com</url>
@@ -91,7 +91,7 @@
 	<scm>
 		<url>https://github.com/richygreat/service.git</url>
 		<developerConnection>scm:git:https://github.com/richygreat/service.git</developerConnection>
-		<tag>service-1.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
