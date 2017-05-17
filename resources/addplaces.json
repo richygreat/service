@@ -1,0 +1,63 @@
+{
+  "location": {
+    "lat": 12.9422491,
+      "lng": 80.2065093
+  },
+  "accuracy": 50,
+  "name": "RichyOCCarStop",
+  "phone_number": "9566272362",
+  "address": "Kamakoti Nagar, Pallikaranai",
+  "types": ["taxi_stand"],
+  "website": "http://www.google.co.in/",
+  "language": "en-US"
+}
+{
+  "id": "98b5accc215c134602463cf6c53ed9a16d270054",
+  "place_id": "qgYvCi0wMDAwMDBjYWIyOWQ4OGZjOjNhNTI1YzM0ZGFmOmE5YTliNTU5NzI2OTcwMzI",
+  "reference": "CkQxAAAA6bbPfhR8NE93-DmiYwUDA-kNvGTtV6Abr1Xp3eIVRVV2gB5y1v5NHFu-85S_LUgbzodzwL_39e7plN5xC8q3wRIQVC8P_eYIHh6w2_KAcIcHyRoUtVMXVwrrvx1m-Ny7leVghltdVjg",
+  "scope": "APP",
+  "status": "OK"
+}
+
+
+{
+  "location": {
+    "lat": 12.9384968,
+      "lng": 80.2051556
+  },
+  "accuracy": 50,
+  "name": "RichyOCCarStop",
+  "phone_number": "9566272362",
+  "address": "IOB Narayanapuram, Pallikaranai",
+  "types": ["taxi_stand"],
+  "website": "http://www.google.co.in/",
+  "language": "en-US"
+}
+{
+  "id": "1f3aaa04ff63ba904d3a78aac34053aa702de156",
+  "place_id": "qgYvCi0wMDAwMDBjYWIyOWQ4OGZjOjNhNTI1YzM0MTNiOjQ0NTVkNzFlMzY0ZDE0MjA",
+  "reference": "CkQxAAAA5LsH7bKuI1syKuGjF2QOJ973py-kfIxmp87NbmVFIZoh0FChrrItECmMGn2lWN0pqgkLMds7KkUS25s4_94DMhIQ_TIqTYS_Ozs3i1nUT7v8ohoU_HbQP8DpUwH0Z6SnYqjZ1qBchIw",
+  "scope": "APP",
+  "status": "OK"
+}
+
+{
+  "location": {
+    "lat": 12.9292804,
+      "lng": 80.2021544
+  },
+  "accuracy": 50,
+  "name": "RichyOCCarStop",
+  "phone_number": "9566272362",
+  "address": "Oil Mill, Pallikaranai",
+  "types": ["taxi_stand"],
+  "website": "http://www.google.co.in/",
+  "language": "en-US"
+}
+{
+  "id": "23102a80feb2d1269af4f2a8d3ccae21c11093a1",
+  "place_id": "qgYvCi0wMDAwMDBjYWIyOWQ4OGZjOjNhNTI1YzNhNGZkOjZlMmQwZDk4ZWYwNTViMGE",
+  "reference": "CkQxAAAA8DTqEPCUbqKd5-rMOAwMIJokvPWVJHKSG5vBSGhor_ONtux_RTn-t-w96exD7jWE_gm9b9etH2RwEITgeTNAmBIQw0-asFo0a7k4SVAxZj13nhoUPfg7y2KQ61ALcm6kH5FXOSJqI-s",
+  "scope": "APP",
+  "status": "OK"
+}
