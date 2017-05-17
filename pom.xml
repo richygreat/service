@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.richygreat</groupId>
 	<artifactId>service</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<packaging>war</packaging>
 	<name>Service</name>
 	<description>Service project</description>
@@ -92,7 +92,7 @@
 	<scm>
 		<url>https://github.com/richygreat/service.git</url>
 		<developerConnection>scm:git:https://github.com/richygreat/service.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>service-1.1</tag>
 	</scm>
 
 	<distributionManagement>
