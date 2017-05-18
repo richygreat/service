@@ -8,7 +8,7 @@ import javax.inject.Named;
 
 import com.occar.entity.Document;
 import com.occar.entity.Person;
-import com.occar.entity.Type;
+import com.rg.service.entity.Type;
 
 @Named
 @SessionScoped

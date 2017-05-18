@@ -21,7 +21,7 @@ public class RouteDAO implements Serializable {
 
 	private static final Logger log = Logger.getLogger(RouteDAO.class.getName());
 
-	@PersistenceContext(unitName = "occardb")
+	@PersistenceContext(unitName = "servicedb")
 	private EntityManager entityManager;
 
 	public RouteDAO() {

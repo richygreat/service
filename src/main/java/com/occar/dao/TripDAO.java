@@ -19,7 +19,7 @@ public class TripDAO implements Serializable {
 
 	private static final Logger log = Logger.getLogger(TripDAO.class.getName());
 
-	@PersistenceContext(unitName = "occardb")
+	@PersistenceContext(unitName = "servicedb")
 	private EntityManager entityManager;
 
 	public TripDAO() {

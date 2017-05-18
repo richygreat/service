@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.occar.dao.PersonDAO;
-import com.occar.entity.Attribute;
 import com.occar.entity.Person;
+import com.rg.service.entity.Attribute;
 
 @Named
 @SessionScoped

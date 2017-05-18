@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.occar.bean.admin.AppConfig;
 import com.occar.entity.Document;
-import com.occar.service.CommonService;
+import com.rg.service.business.CommonService;
 
 import net.coobird.thumbnailator.Thumbnails;
 

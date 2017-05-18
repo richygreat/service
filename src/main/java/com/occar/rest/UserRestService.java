@@ -13,9 +13,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.occar.bean.rest.UserBean;
-import com.occar.constant.CommonConstants;
 import com.occar.entity.Person;
 import com.occar.service.PersonService;
+import com.rg.service.constant.CommonConstants;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -9,11 +9,11 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.occar.constant.CommonConstants;
-import com.occar.dao.CommonDAO;
-import com.occar.entity.Attribute;
-import com.occar.entity.Menu;
-import com.occar.entity.Type;
+import com.rg.service.constant.CommonConstants;
+import com.rg.service.dao.CommonDAO;
+import com.rg.service.entity.Attribute;
+import com.rg.service.entity.Menu;
+import com.rg.service.entity.Type;
 
 @Named("appConfigBean")
 @ApplicationScoped

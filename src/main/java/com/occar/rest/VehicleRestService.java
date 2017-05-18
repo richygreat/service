@@ -18,9 +18,9 @@ import javax.ws.rs.core.MediaType;
 import com.occar.bean.rest.VehicleBean;
 import com.occar.entity.Person;
 import com.occar.entity.Vehicle;
-import com.occar.service.CommonService;
 import com.occar.service.PersonService;
 import com.occar.service.VehicleService;
+import com.rg.service.business.CommonService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

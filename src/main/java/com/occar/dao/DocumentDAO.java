@@ -21,7 +21,7 @@ public class DocumentDAO implements Serializable {
 
 	private static final Logger log = Logger.getLogger(DocumentDAO.class.getName());
 
-	@PersistenceContext(unitName = "occardb")
+	@PersistenceContext(unitName = "servicedb")
 	private EntityManager entityManager;
 
 	public DocumentDAO() {

@@ -13,8 +13,8 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.maps.model.PlacesSearchResult;
 import com.occar.bean.rest.CoOrdinateBean;
-import com.occar.service.CommonService;
-import com.occar.util.common.GoogleUtil;
+import com.rg.service.business.CommonService;
+import com.rg.service.util.common.GoogleUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

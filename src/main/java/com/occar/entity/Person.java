@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.rg.service.entity.Attribute;
+
 /**
  * Entity implementation class for Entity: Person
  *

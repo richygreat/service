@@ -27,11 +27,11 @@ import com.occar.bean.rest.UploadDocumentBean;
 import com.occar.bean.rest.UserBean;
 import com.occar.entity.Document;
 import com.occar.entity.Person;
-import com.occar.entity.Type;
-import com.occar.service.CommonIOService;
-import com.occar.service.CommonService;
 import com.occar.service.PersonService;
-import com.occar.util.common.CommonUtil;
+import com.rg.service.business.CommonIOService;
+import com.rg.service.business.CommonService;
+import com.rg.service.entity.Type;
+import com.rg.service.util.common.CommonUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

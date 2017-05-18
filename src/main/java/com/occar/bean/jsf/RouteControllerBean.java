@@ -11,9 +11,9 @@ import javax.inject.Named;
 import com.occar.bean.admin.RouteBean;
 import com.occar.entity.Location;
 import com.occar.entity.Route;
-import com.occar.service.CommonService;
-import com.occar.util.filter.FilterUtil;
-import com.occar.util.filter.IPredicate;
+import com.rg.service.business.CommonService;
+import com.rg.service.util.filter.FilterUtil;
+import com.rg.service.util.filter.IPredicate;
 
 @Named("routeController")
 @SessionScoped

@@ -16,14 +16,14 @@ import javax.ws.rs.core.MediaType;
 
 import com.occar.bean.rest.RouteBean;
 import com.occar.bean.rest.TripBean;
-import com.occar.constant.CommonConstants;
 import com.occar.entity.Location;
 import com.occar.entity.Person;
 import com.occar.entity.Route;
 import com.occar.entity.Trip;
 import com.occar.entity.Vehicle;
-import com.occar.service.CommonService;
 import com.occar.service.PersonService;
+import com.rg.service.business.CommonService;
+import com.rg.service.constant.CommonConstants;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.rg.service.entity.Type;
+
 /**
  * Entity implementation class for Entity: Company
  *

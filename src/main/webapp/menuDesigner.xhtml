@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition>
+	<h:panelGroup
+		rendered="#{not empty menuBean.menuList and menuBean.selectedMenuId eq 0}">
+		<h:form>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="well well-sm">Click and Drag to arrange your Menu</div>
+				<h:commandLink action="#{menuDesignerController.addMenuPrepare()}"
+					styleClass="btn btn-primary btn-lg btn-block">Add new Menu</h:commandLink>
+				<h:commandLink action="#{menuDesignerController.saveMenuOrder()}"
+					styleClass="btn btn-default btn-lg btn-block">Save Menu Order</h:commandLink>
+				<p></p>
+				<div id="draggablePanelList">
+					<ui:repeat value="#{menuBean.menuList}" var="menu" varStatus="idx">
+						<div class="panel panel-default">
+							<h:inputHidden value="#{menu.menuOrder}" />
+							<div class="panel-heading">
+								<h:outputText value="#{menu.name}" />
+							</div>
+							<div class="panel-body">
+								<div class="pull-right">
+									<h:panelGroup rendered="#{menu.subMenus.isEmpty()}">
+										<span class="label label-info">No Sub Menus</span>
+									</h:panelGroup>
+									<h:panelGroup rendered="#{not empty menu.subMenus}">
+										<button type="button" class="btn btn-default btn-xs"
+											data-toggle="tooltip" data-placement="bottom"
+											title="#{menu.getSubMenusDisplay()}">
+											<span class="glyphicon glyphicon-list-alt"></span> Sub Menus
+										</button>
+									</h:panelGroup>
+									<span> </span>
+									<h:commandLink styleClass="btn btn-xs btn-default"
+										action="#{menuDesignerController.deleteMenu(menu.menuId)}">
+										<span class="glyphicon glyphicon-trash"></span> Delete
+								</h:commandLink>
+									<span> </span>
+									<h:commandLink styleClass="btn btn-xs btn-default"
+										action="#{menuDesignerController.editMenu(menu.menuId)}">
+										<span class="glyphicon glyphicon-pencil"></span> Edit
+								</h:commandLink>
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+			</div>
+		</h:form>
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="well well-sm">Your Menu (Original Menu will be
+				Horizontal)</div>
+			<ul class="nav nav-tabs nav-stacked">
+				<ui:repeat value="#{menuBean.menuList}" var="menu" varStatus="idx">
+					<h:panelGroup rendered="#{menu.subMenus.isEmpty()}">
+						<li role="presentation"><a href="#"><h:outputText
+									value="#{menu.name}" /></a></li>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{not empty menu.subMenus}">
+						<li role="presentation" class="dropdown"><a
+							class="dropdown-toggle" data-toggle="dropdown" href="#"
+							role="button" aria-haspopup="true" aria-expanded="false"> <h:outputText
+									value="#{menu.name}" /> <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<ui:repeat value="#{menu.subMenus}" var="subMenu">
+									<li><a href="#"><h:outputText value="#{subMenu.name}" /></a></li>
+								</ui:repeat>
+							</ul></li>
+					</h:panelGroup>
+				</ui:repeat>
+			</ul>
+		</div>
+	</h:panelGroup>
+	<h:panelGroup
+		rendered="#{menuBean.menuList.isEmpty() or menuBean.selectedMenuId ne 0}">
+		<h:form>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="form-group">
+					<label>Menu Label :</label>
+					<h:inputText autocomplete="off" styleClass="form-control"
+						value="#{menuBean.menu.name}" />
+				</div>
+				<div class="form-group">
+					<label>Menu url :</label>
+					<h:inputText autocomplete="off" styleClass="form-control"
+						value="#{menuBean.menu.url}" />
+				</div>
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{menuDesignerController.addMenu}" value="Save Menu">
+					</h:commandButton>
+					<span> </span>
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{menuDesignerController.cancelEdit}" value="Cancel" />
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 pull-right">
+				<div class="well well-sm">Add your sub menus here</div>
+				<div id="draggablePanelList">
+					<ui:repeat value="#{menuBean.menu.subMenus}" var="menu"
+						varStatus="idx">
+						<div class="panel panel-default">
+							<h:inputHidden value="#{menu.menuOrder}" />
+							<div class="panel-heading">
+								Sub Menu #{idx.index + 1}
+								<div class="pull-right">
+									<h:commandLink styleClass="btn btn-xs btn-default"
+										action="#{menuDesignerController.deleteSubMenu(idx.index)}">
+										<span class="glyphicon glyphicon-remove"></span>
+									</h:commandLink>
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Sub Menu Label :</label>
+									<h:inputText autocomplete="off" styleClass="form-control"
+										value="#{menu.name}" />
+								</div>
+								<div class="form-group">
+									<label>Sub Menu url :</label>
+									<h:inputText autocomplete="off" styleClass="form-control"
+										value="#{menu.url}" />
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{menuDesignerController.addMoreSubMenu}"
+						value="Add More Sub Menu" />
+				</div>
+			</div>
+		</h:form>
+	</h:panelGroup>
+</ui:composition>
+</html>

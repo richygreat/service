@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>RG Service</title>
+	<link href="./css/bootstrap.min.css" rel="stylesheet" />
+	<style type="text/css">
+	/* show the move cursor as the user moves the mouse over the panel header.*/
+	#draggablePanelList .panel-heading {
+		cursor: move;
+	}
+	#draggableMenuList .panel-heading {
+		cursor: move;
+	}
+	.tooltip-inner {
+	    white-space:pre-wrap;
+	}
+	.wide {
+	  width:100%;
+	  height:100px;
+	  background-image:url('./images/1.jpg');
+	  background-size:cover;
+	}
+	.wide img {
+	  width:100%;
+	}
+	.navbar {
+		margin-bottom: 0px;
+	}
+	</style>
+</h:head>
+<h:body>
+	<h:form>
+		<ui:include src="menu.xhtml" />
+	</h:form>
+	<!-- Body content starts -->
+	<div class="wide">
+		<div class="container">
+			<h2>RG Service Admin</h2>
+			<p class="pull-right"><b><i>Chennai... Ithu enga area...</i></b></p>
+		</div>
+	</div>
+	<div class="container">
+		<h:panelGroup rendered="#{menuController.function == 'menuDesign'}">
+			<div class="page-header">
+				<h2>Menu Designer</h2>
+			</div>
+			<div class="row">
+				<ui:include src="menuDesigner.xhtml" />
+			</div>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{menuController.function == 'typeDesign'}">
+			<div class="page-header">
+				<h2>Type Designer</h2>
+			</div>
+			<div class="row">
+				<ui:include src="typeDesigner.xhtml" />
+			</div>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{menuController.function == 'docManage'}">
+			<div class="page-header">
+				<h2>Document Manager</h2>
+			</div>
+			<div class="row">
+				<ui:include src="docManager.xhtml" />
+			</div>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{menuController.function == 'routeManage'}">
+			<div class="page-header">
+				<h2>Route Manager</h2>
+			</div>
+			<div class="row">
+				<ui:include src="routeManager.xhtml" />
+			</div>
+		</h:panelGroup>
+	</div>
+
+	<!-- Body content ends -->
+
+
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/jquery-ui.js"></script>
+	<script>
+		jQuery(function($) {
+			$('[data-toggle="tooltip"]').tooltip();
+			var panelList = $('#draggablePanelList');
+			panelList.sortable({
+				// Only make the .panel-heading child elements support dragging.
+				// Omit this to make then entire <li>...</li> draggable.
+				handle : '.panel-heading',
+				update : function() {
+					$('.panel', panelList).each(function(index, elem) {
+						var $listItem = $(elem), newIndex = $listItem.index();
+						// Persist the new indices.
+						$listItem.find('input[type=hidden]').val(newIndex);
+					});
+				}
+			});
+		});
+		function funTypeSelected(typeDesc) {
+			$('#dropdownMenuDocType').html(typeDesc + ' <span class="caret"></span>');
+			$('input[id*="selected-type-desc"]').val(typeDesc);
+		}
+	</script>
+	<script src="./js/maps.js"></script>
+	<ui:include src="footer.xhtml" />
+</h:body>
+</html>

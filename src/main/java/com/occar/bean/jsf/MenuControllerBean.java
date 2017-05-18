@@ -10,15 +10,17 @@ import javax.inject.Named;
 
 import com.occar.bean.admin.AppConfig;
 import com.occar.bean.admin.DocumentBean;
-import com.occar.bean.admin.MenuBean;
 import com.occar.bean.admin.RouteBean;
-import com.occar.bean.admin.TypeBean;
-import com.occar.constant.CommonConstants;
-import com.occar.entity.Menu;
 import com.occar.entity.Person;
-import com.occar.entity.Type;
-import com.occar.service.CommonService;
 import com.occar.service.PersonService;
+import com.rg.service.bean.admin.MenuBean;
+import com.rg.service.bean.admin.TypeBean;
+import com.rg.service.bean.jsf.MenuDesignerControllerBean;
+import com.rg.service.bean.jsf.TypeDesignerControllerBean;
+import com.rg.service.business.CommonService;
+import com.rg.service.constant.CommonConstants;
+import com.rg.service.entity.Menu;
+import com.rg.service.entity.Type;
 
 @Named("menuController")
 @SessionScoped

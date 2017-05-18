@@ -21,7 +21,7 @@ public class VehicleDAO implements Serializable {
 
 	private static final Logger log = Logger.getLogger(VehicleDAO.class.getName());
 
-	@PersistenceContext(unitName = "occardb")
+	@PersistenceContext(unitName = "servicedb")
 	private EntityManager entityManager;
 
 	public VehicleDAO() {

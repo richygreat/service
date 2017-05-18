@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.rg.service.entity.Attribute;
+import com.rg.service.entity.Type;
+
 /**
  * Entity implementation class for Entity: Document
  *

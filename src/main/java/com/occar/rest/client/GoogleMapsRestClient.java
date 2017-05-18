@@ -7,7 +7,7 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import com.occar.bean.admin.AppConfig;
 import com.occar.bean.rest.GooglePlacesAddBean;
 import com.occar.bean.rest.GooglePlacesAddResponseBean;
-import com.occar.constant.CommonConstants;
+import com.rg.service.constant.CommonConstants;
 
 public class GoogleMapsRestClient {
 	public static final String HTTP_SERVICE_URL = "https://maps.googleapis.com/maps/api/place/add/json?key="

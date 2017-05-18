@@ -1,0 +1,151 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition>
+	<h:panelGroup
+		rendered="#{not empty routeBean.routeList and routeBean.selectedRouteId eq 0}">
+		<h:form>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="well well-sm">Click and Drag to arrange your Route</div>
+				<h:commandLink action="#{routeController.addRoutePrepare()}"
+					styleClass="btn btn-primary btn-lg btn-block">Add new Route</h:commandLink>
+				<p></p>
+				<div>
+					<ui:repeat value="#{routeBean.routeList}" var="route" varStatus="idx">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h:outputText value="#{route.name}" />
+								<div class="pull-right">
+									<button class="btn btn-xs btn-default" type="button"
+										onclick="loadMap(#{route.routeId})">
+										<span class="glyphicon glyphicon-map-marker"></span> View In
+										Map
+									</button>
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="pull-right">
+									<h:panelGroup rendered="#{route.stops.isEmpty()}">
+										<span class="label label-info">No Car Stops</span>
+									</h:panelGroup>
+									<h:panelGroup rendered="#{not empty route.stops}">
+										<button type="button" class="btn btn-default btn-xs"
+											data-toggle="tooltip" data-placement="bottom"
+											title="">
+											<span class="glyphicon glyphicon-list-alt"></span> Car Stops
+										</button>
+									</h:panelGroup>
+									<span> </span>
+									<h:commandLink styleClass="btn btn-xs btn-default"
+										action="#{routeController.deleteRoute(route.routeId)}">
+										<span class="glyphicon glyphicon-trash"></span> Delete
+								</h:commandLink>
+									<span> </span>
+									<h:commandLink styleClass="btn btn-xs btn-default"
+										action="#{routeController.editRoute(route.routeId)}">
+										<span class="glyphicon glyphicon-pencil"></span> Edit
+								</h:commandLink>
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+			</div>
+		</h:form>
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="well well-sm" style="display: none" id="map-holder">
+				<div id="map" style="height: 500px"></div>
+			</div>
+			<div class="well well-sm">Your Menu (Original Menu will be
+				Horizontal)</div>
+			<ul class="nav nav-tabs nav-stacked">
+				<ui:repeat value="#{routeBean.routeList}" var="route" varStatus="idx">
+					<h:panelGroup rendered="#{route.stops.isEmpty()}">
+						<li role="presentation"><a href="#"><h:outputText
+									value="#{route.name}" /></a></li>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{not empty route.stops}">
+						<li role="presentation" class="dropdown"><a
+							class="dropdown-toggle" data-toggle="dropdown" href="#"
+							role="button" aria-haspopup="true" aria-expanded="false"> <h:outputText
+									value="#{route.name}" /> <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<ui:repeat value="#{route.stops}" var="carStops">
+									<li><a href="#"><h:outputText value="#{carStops.name}" /></a></li>
+								</ui:repeat>
+							</ul></li>
+					</h:panelGroup>
+				</ui:repeat>
+			</ul>
+		</div>
+	</h:panelGroup>
+	<h:panelGroup
+		rendered="#{routeBean.routeList.isEmpty() or routeBean.selectedRouteId ne 0}">
+		<h:form>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="form-group">
+					<label>Route Name :</label>
+					<h:inputText autocomplete="off" styleClass="form-control"
+						value="#{routeBean.route.name}" />
+				</div>
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{routeController.addRoute}" value="Save Route">
+					</h:commandButton>
+					<span> </span>
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{routeController.cancelEdit}" value="Cancel" />
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 pull-right">
+				<div class="well well-sm">Add your Car Stops here</div>
+				<div id="draggablePanelList">
+					<ui:repeat value="#{routeBean.route.stops}" var="stop"
+						varStatus="idx">
+						<div class="panel panel-default">
+							<h:inputHidden value="#{stop.routeOrder}" />
+							<div class="panel-heading">
+								Car Stop #{idx.index + 1}
+								<div class="pull-right">
+									<h:commandLink styleClass="btn btn-xs btn-default"
+										action="#{routeController.deleteStop(idx.index)}">
+										<span class="glyphicon glyphicon-remove"></span>
+									</h:commandLink>
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Car Stop Name : 
+										<h:commandLink styleClass="btn btn-xs btn-default"
+											action="#{routeController.searchStop(idx.index)}">
+											<span class="glyphicon glyphicon-search"></span>
+										</h:commandLink>
+									</label>
+									<h:inputText autocomplete="off" styleClass="form-control"
+										value="#{stop.name}" />
+								</div>
+								<div class="form-group">
+									<label>Car Stop Latitude :</label>
+									<h:inputText autocomplete="off" styleClass="form-control"
+										value="#{stop.latitude}" />
+								</div>
+								<div class="form-group">
+									<label>Car Stop Longitude :</label>
+									<h:inputText autocomplete="off" styleClass="form-control"
+										value="#{stop.longitude}" />
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{routeController.addMoreStops()}"
+						value="Add More Car Stops" />
+				</div>
+			</div>
+		</h:form>
+	</h:panelGroup>
+</ui:composition>
+</html>

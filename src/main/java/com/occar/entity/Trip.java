@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.rg.service.entity.Attribute;
+
 /**
  * Entity implementation class for Entity: Trip
  *

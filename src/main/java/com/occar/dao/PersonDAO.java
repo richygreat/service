@@ -16,8 +16,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
-import com.occar.entity.Attribute;
 import com.occar.entity.Person;
+import com.rg.service.entity.Attribute;
 
 @Named
 @SessionScoped
@@ -26,7 +26,7 @@ public class PersonDAO implements Serializable {
 
 	private static final Logger log = Logger.getLogger(PersonDAO.class.getName());
 
-	@PersistenceContext(unitName = "occardb")
+	@PersistenceContext(unitName = "servicedb")
 	private EntityManager entityManager;
 
 	public PersonDAO() {

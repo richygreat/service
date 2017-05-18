@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition>
+	<h:panelGroup rendered="#{not empty documentBean.userList}">
+		<h:form>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div>
+					<ui:repeat value="#{documentBean.userList}" var="user"
+						varStatus="idx">
+						<div class="panel panel-default">
+							<div class="panel-heading clearfix">
+								<h:outputText value="#{user.name}" />
+								<div class="pull-right">
+									<h:panelGroup rendered="#{not empty user.rejectionReason}">
+										<button type="button" class="btn btn-default btn-xs"
+											data-toggle="tooltip" data-placement="bottom"
+											title="#{user.rejectionReason}">
+											<span class="glyphicon glyphicon-remove"></span> Reject
+											Reason
+										</button>
+										<span> </span>
+									</h:panelGroup>
+									<h:commandButton styleClass="btn btn-primary"
+										action="#{documentController.approveUser(user.personId)}"
+										value="Approve">
+									</h:commandButton>
+									<span> </span> <input type="button" class="btn btn-danger"
+										value="Reject" data-toggle="modal"
+										data-target="#rejection#{user.personId}"> </input>
+									<div id="rejection#{user.personId}" class="modal fade"
+										role="dialog">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">Comments</h4>
+												</div>
+												<div class="modal-body">
+													<h:inputTextarea styleClass="form-control"
+														value="#{user.rejectionReason}" />
+												</div>
+												<div class="modal-footer">
+													<h:commandButton styleClass="btn btn-default"
+														action="#{documentController.rejectUser(user.personId)}"
+														value="Proceed with Rejection">
+													</h:commandButton>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel-body">
+								<ui:repeat value="#{user.documents}" var="doc"
+									varStatus="docIdx">
+									<div class="pull-right" style="padding-right: 20px;">
+										<b>Document Type:</b>
+										<h:outputText value="#{doc.type.description}" />
+									</div>
+									<img
+										src="https://service-occarapp.rhcloud.com/file?thumbs=true&amp;docid=#{doc.documentId}"
+										class="img-thumbnail" />
+									<br />
+									<button type="button" class="btn btn-xs btn-default"
+										data-toggle="modal"
+										data-target=".bd-example-#{doc.documentId}">
+										<span class="glyphicon glyphicon-zoom-in"></span> Expand
+									</button>
+									<div class="modal fade bd-example-#{doc.documentId}"
+										tabindex="-1" role="dialog"
+										aria-labelledby="myLargeModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content" align="center">
+												<img
+													src="https://service-occarapp.rhcloud.com/file?docid=#{doc.documentId}" />
+											</div>
+										</div>
+									</div>
+									<br />
+									<br />
+								</ui:repeat>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+			</div>
+		</h:form>
+	</h:panelGroup>
+</ui:composition>
+</html>

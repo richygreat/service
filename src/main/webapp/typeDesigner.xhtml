@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition>
+	<h:panelGroup
+		rendered="#{not empty typeBean.typeList and typeBean.selectedTypeId eq 0}">
+		<h:form>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="well well-sm">Click and Drag to arrange your Type</div>
+				<h:commandLink action="#{typeDesignerController.addTypePrepare()}"
+					styleClass="btn btn-primary btn-lg btn-block">Add new Type</h:commandLink>
+				<h:commandLink action="#{typeDesignerController.saveTypeOrder()}"
+					styleClass="btn btn-default btn-lg btn-block">Save Type Order</h:commandLink>
+				<p></p>
+				<div id="draggablePanelList">
+					<ui:repeat value="#{typeBean.typeList}" var="type" varStatus="idx">
+						<div class="panel panel-default">
+							<h:inputHidden value="#{type.typeOrder}" />
+							<div class="panel-heading">
+								<h:outputText value="#{type.description}" />
+							</div>
+							<div class="panel-body">
+								<div class="pull-right">
+									<h:panelGroup rendered="#{type.subTypes.isEmpty()}">
+										<span class="label label-info">No Sub Types</span>
+									</h:panelGroup>
+									<h:panelGroup rendered="#{not empty type.subTypes}">
+										<button type="button" class="btn btn-default btn-xs"
+											data-toggle="tooltip" data-placement="bottom"
+											title="#{type.getSubTypesDisplay()}">
+											<span class="glyphicon glyphicon-list-alt"></span> Sub Types
+										</button>
+									</h:panelGroup>
+									<span> </span>
+									<h:commandLink styleClass="btn btn-xs btn-default"
+										action="#{typeDesignerController.deleteType(type.typeId)}">
+										<span class="glyphicon glyphicon-trash"></span> Delete
+								</h:commandLink>
+									<span> </span>
+									<h:commandLink styleClass="btn btn-xs btn-default"
+										action="#{typeDesignerController.editType(type.typeId)}">
+										<span class="glyphicon glyphicon-pencil"></span> Edit
+								</h:commandLink>
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+			</div>
+		</h:form>
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="well well-sm">Your Type (Original Type will be
+				Horizontal)</div>
+			<ul class="nav nav-tabs nav-stacked">
+				<ui:repeat value="#{typeBean.typeList}" var="type" varStatus="idx">
+					<h:panelGroup rendered="#{type.subTypes.isEmpty()}">
+						<li role="presentation"><a href="#"><h:outputText
+									value="#{type.description}" /></a></li>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{not empty type.subTypes}">
+						<li role="presentation" class="dropdown"><a
+							class="dropdown-toggle" data-toggle="dropdown" href="#"
+							role="button" aria-haspopup="true" aria-expanded="false"> <h:outputText
+									value="#{type.description}" /> <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<ui:repeat value="#{type.subTypes}" var="subType">
+									<li><a href="#"><h:outputText value="#{subType.description}" /></a></li>
+								</ui:repeat>
+							</ul></li>
+					</h:panelGroup>
+				</ui:repeat>
+			</ul>
+		</div>
+	</h:panelGroup>
+	<h:panelGroup
+		rendered="#{typeBean.typeList.isEmpty() or typeBean.selectedTypeId ne 0}">
+		<h:form>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="form-group">
+					<label>Type Label :</label>
+					<h:inputText autocomplete="off" styleClass="form-control"
+						value="#{typeBean.type.description}" />
+				</div>
+				<div class="form-group">
+					<label>Type Category :</label>
+					<h:inputText autocomplete="off" styleClass="form-control"
+						value="#{typeBean.type.type}" />
+				</div>
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{typeDesignerController.addType}" value="Save Type">
+					</h:commandButton>
+					<span> </span>
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{typeDesignerController.cancelEdit}" value="Cancel" />
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 pull-right">
+				<div class="well well-sm">Add your sub types here</div>
+				<div id="draggablePanelList">
+					<ui:repeat value="#{typeBean.type.subTypes}" var="type"
+						varStatus="idx">
+						<div class="panel panel-default">
+							<h:inputHidden value="#{type.typeOrder}" />
+							<div class="panel-heading">
+								Sub Type #{idx.index + 1}
+								<div class="pull-right">
+									<h:commandLink styleClass="btn btn-xs btn-default"
+										action="#{typeDesignerController.deleteSubType(idx.index)}">
+										<span class="glyphicon glyphicon-remove"></span>
+									</h:commandLink>
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Sub Type Label :</label>
+									<h:inputText autocomplete="off" styleClass="form-control"
+										value="#{type.description}" />
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{typeDesignerController.addMoreSubType}"
+						value="Add More Sub Type" />
+				</div>
+			</div>
+		</h:form>
+	</h:panelGroup>
+</ui:composition>
+</html>

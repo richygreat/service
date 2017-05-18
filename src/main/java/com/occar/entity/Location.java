@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.rg.service.entity.Attribute;
+
 /**
  * Entity implementation class for Entity: Location
  *
