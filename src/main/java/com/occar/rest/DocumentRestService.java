@@ -24,10 +24,10 @@ import javax.ws.rs.core.MediaType;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 import com.occar.bean.rest.UploadDocumentBean;
-import com.occar.bean.rest.UserBean;
 import com.occar.entity.Document;
 import com.occar.entity.Person;
 import com.occar.service.PersonService;
+import com.rg.service.bean.rest.UserBean;
 import com.rg.service.business.CommonIOService;
 import com.rg.service.business.CommonService;
 import com.rg.service.entity.Type;

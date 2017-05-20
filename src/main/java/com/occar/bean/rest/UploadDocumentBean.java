@@ -7,6 +7,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.jboss.resteasy.annotations.providers.multipart.PartType;
 
+import com.rg.service.bean.rest.UserBean;
+
 public class UploadDocumentBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
