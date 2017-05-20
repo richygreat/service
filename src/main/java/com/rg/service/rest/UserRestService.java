@@ -12,9 +12,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.rg.service.bean.rest.MoneyBean;
 import com.rg.service.bean.rest.UserBean;
 import com.rg.service.business.UserService;
 import com.rg.service.constant.CommonConstants;
+import com.rg.service.entity.Money;
 import com.rg.service.entity.User;
 
 import io.swagger.annotations.Api;
@@ -37,6 +39,7 @@ public class UserRestService implements Serializable {
 		UserBean bean = new UserBean();
 		User user = service.getUserById(Integer.valueOf(personId));
 		if (user != null) {
+			log.info("Fetched User :: " + user);
 			bean.setResult(CommonConstants.SUCCESS);
 			bean.setPersonId(user.getPersonId());
 			bean.setUserID(user.getUserID());
@@ -61,6 +64,15 @@ public class UserRestService implements Serializable {
 		user.setAccessToken(bean.getAccessToken());
 		user.setUserID(bean.getUserID());
 		user.setName(bean.getName());
+		
+		MoneyBean moneyBean = bean.getMoney();
+		if(moneyBean != null) {
+			Money money = new Money();
+			money.setAmount(moneyBean.getAmount());
+			money.setDate(moneyBean.getDate());
+			user.getMoneyList().add(money);
+		}
+		
 		int personId = service.saveUser(user);
 		log.info("Created User PersonId :: " + personId);
 		return String.valueOf(personId);

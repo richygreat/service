@@ -1,5 +1,7 @@
 package com.occar.test.rest;
 
+import java.util.Date;
+
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
@@ -8,6 +10,7 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.rg.service.bean.rest.MoneyBean;
 import com.rg.service.bean.rest.UserBean;
 
 public class CommonRestTest {
@@ -39,13 +42,20 @@ public class CommonRestTest {
 		ResteasyWebTarget target = client.target(HTTP_SERVICE_URL);
 
 		UserRestServiceClient userService = target.proxy(UserRestServiceClient.class);
-		UserBean passenger = new UserBean();
-		passenger.setName("Richy");
-		String passengerId = userService.saveUser(passenger);
-		System.out.println("User Created :: " + passengerId);
-		Assert.assertNotNull(passengerId);
+		UserBean user = new UserBean();
+		user.setName("Richy");
 		
-		Response response = userService.getUser(passengerId);
+		MoneyBean money = new MoneyBean();
+		money.setAmount(1000.00);
+		money.setCredit(Boolean.TRUE);
+		money.setDate(new Date());
+		user.setMoney(money);
+		
+		String personId = userService.saveUser(user);
+		System.out.println("User Created :: " + personId);
+		Assert.assertNotNull(personId);
+		
+		Response response = userService.getUser(personId);
 		System.out.println(response.readEntity(String.class));
 		Assert.assertNotNull(response);
 	}

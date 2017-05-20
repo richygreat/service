@@ -9,6 +9,7 @@ public class UserBean implements Serializable {
 	private String result;
 	private String userID;
 	private String accessToken;
+	private MoneyBean money;
 
 	@Override
 	public String toString() {
@@ -54,5 +55,13 @@ public class UserBean implements Serializable {
 
 	public void setAccessToken(String accessToken) {
 		this.accessToken = accessToken;
+	}
+
+	public MoneyBean getMoney() {
+		return money;
+	}
+
+	public void setMoney(MoneyBean money) {
+		this.money = money;
 	}
 }

@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.rg.service.entity.Attribute;
-
 /**
  * Entity implementation class for Entity: User
  *
@@ -34,6 +32,13 @@ public class User implements Serializable {
 	private String userID;
 	private String accessToken;
 	private String rejectionReason;
+	
+	@Override
+	public String toString() {
+		return "User [personId=" + personId + ", name=" + name + ", moneyList=" + moneyList + ", attributes="
+				+ attributes + ", userID=" + userID + ", accessToken=" + accessToken + ", rejectionReason="
+				+ rejectionReason + "]";
+	}
 
 	private static final long serialVersionUID = 1L;
 
