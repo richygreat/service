@@ -12,9 +12,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.rg.service.bean.rest.MoneyBean;
 import com.rg.service.bean.rest.UserBean;
 import com.rg.service.business.UserService;
 import com.rg.service.constant.CommonConstants;
+import com.rg.service.entity.Money;
 import com.rg.service.entity.User;
 
 import io.swagger.annotations.Api;
@@ -43,6 +45,22 @@ public class UserRestService implements Serializable {
 			bean.setUserID(user.getUserID());
 			bean.setAccessToken(user.getAccessToken());
 			bean.setName(user.getName());
+
+			if (user.getMoneyList() != null) {
+				for (Money money : user.getMoneyList()) {
+					MoneyBean moneyBean = new MoneyBean();
+					moneyBean.setAmount(money.getAmount());
+					moneyBean.setCredit(money.getCredit());
+					moneyBean.setDate(money.getDate());
+					moneyBean.setDescription(money.getDescription());
+					if (money.getType() != null) {
+						moneyBean.setType(money.getType().getDescription());
+					}
+					moneyBean.setMoneyId(money.getMoneyId());
+					moneyBean.setUserID(money.getUser().getUserID());
+					bean.getMoneyList().add(moneyBean);
+				}
+			}
 		} else {
 			bean.setResult(CommonConstants.FAILURE);
 		}
@@ -62,7 +80,7 @@ public class UserRestService implements Serializable {
 		user.setAccessToken(bean.getAccessToken());
 		user.setUserID(bean.getUserID());
 		user.setName(bean.getName());
-		
+
 		int personId = service.saveUser(user);
 		log.info("Created User PersonId :: " + personId);
 		return String.valueOf(personId);

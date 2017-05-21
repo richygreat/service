@@ -1,6 +1,8 @@
 package com.rg.service.bean.rest;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserBean implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -9,7 +11,7 @@ public class UserBean implements Serializable {
 	private String result;
 	private String userID;
 	private String accessToken;
-	private MoneyBean money;
+	private List<MoneyBean> moneyList;
 
 	@Override
 	public String toString() {
@@ -57,11 +59,14 @@ public class UserBean implements Serializable {
 		this.accessToken = accessToken;
 	}
 
-	public MoneyBean getMoney() {
-		return money;
+	public List<MoneyBean> getMoneyList() {
+		if (moneyList == null) {
+			moneyList = new ArrayList<>();
+		}
+		return moneyList;
 	}
 
-	public void setMoney(MoneyBean money) {
-		this.money = money;
+	public void setMoneyList(List<MoneyBean> moneyList) {
+		this.moneyList = moneyList;
 	}
 }

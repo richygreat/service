@@ -17,16 +17,6 @@ public class CommonRestTest {
 	private static final String HTTP_SERVICE_URL = "http://localhost:8080/service/rest";
 
 	@Test
-	public void pojoGetServiceTest() {
-		ResteasyClient client = new ResteasyClientBuilder().build();
-		ResteasyWebTarget target = client.target(HTTP_SERVICE_URL);
-		SimpleRESTPojoClient simple = target.proxy(SimpleRESTPojoClient.class);
-		Response response = simple.pojo();
-		System.out.println(response.readEntity(String.class));
-		Assert.assertNotNull(response);
-	}
-
-	@Test
 	public void dbGetServiceTest() {
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		ResteasyWebTarget target = client.target(HTTP_SERVICE_URL);
@@ -65,6 +55,8 @@ public class CommonRestTest {
 		money.setAmount(2000.00);
 		money.setCredit(Boolean.TRUE);
 		money.setDate(new Date());
+		money.setDescription("Salary");
+		money.setType("Fixed Income");
 		money.setUserID("Richy");
 
 		String moneyId = moneyService.saveMoney(money);
