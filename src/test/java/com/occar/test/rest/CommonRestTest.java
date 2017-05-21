@@ -44,20 +44,30 @@ public class CommonRestTest {
 		UserRestServiceClient userService = target.proxy(UserRestServiceClient.class);
 		UserBean user = new UserBean();
 		user.setName("Richy");
-		
-		MoneyBean money = new MoneyBean();
-		money.setAmount(1000.00);
-		money.setCredit(Boolean.TRUE);
-		money.setDate(new Date());
-		user.setMoney(money);
-		
+		user.setUserID("Richy");
+
 		String personId = userService.saveUser(user);
 		System.out.println("User Created :: " + personId);
 		Assert.assertNotNull(personId);
-		
+
 		Response response = userService.getUser(personId);
 		System.out.println(response.readEntity(String.class));
 		Assert.assertNotNull(response);
 	}
 
+	@Test
+	public void moneyBasicTest() {
+		ResteasyClient client = new ResteasyClientBuilder().build();
+		ResteasyWebTarget target = client.target(HTTP_SERVICE_URL);
+
+		MoneyRestServiceClient moneyService = target.proxy(MoneyRestServiceClient.class);
+		MoneyBean money = new MoneyBean();
+		money.setAmount(2000.00);
+		money.setCredit(Boolean.TRUE);
+		money.setDate(new Date());
+		money.setUserID("Richy");
+
+		String moneyId = moneyService.saveMoney(money);
+		Assert.assertNotNull(moneyId);
+	}
 }

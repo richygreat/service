@@ -11,11 +11,12 @@ public class MoneyBean implements Serializable {
 	private Date date;
 	private String description;
 	private Boolean credit;
+	private String userID;
 
 	@Override
 	public String toString() {
-		return "Money [moneyId=" + moneyId + ", amount=" + amount + ", type=" + type + ", date=" + date
-				+ ", description=" + description + ", credit=" + credit + "]";
+		return "MoneyBean [moneyId=" + moneyId + ", amount=" + amount + ", type=" + type + ", date=" + date
+				+ ", description=" + description + ", credit=" + credit + ", userID=" + userID + "]";
 	}
 
 	public Long getMoneyId() {
@@ -66,4 +67,11 @@ public class MoneyBean implements Serializable {
 		this.credit = credit;
 	}
 
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
 }

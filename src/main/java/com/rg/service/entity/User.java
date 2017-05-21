@@ -25,14 +25,14 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int personId;
 	private String name;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 	private List<Money> moneyList = new LinkedList<Money>();
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Attribute> attributes;
 	private String userID;
 	private String accessToken;
 	private String rejectionReason;
-	
+
 	@Override
 	public String toString() {
 		return "User [personId=" + personId + ", name=" + name + ", moneyList=" + moneyList + ", attributes="

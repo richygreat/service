@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -27,6 +29,9 @@ public class Money implements Serializable {
 	private Date date;
 	private String description;
 	private Boolean credit;
+	@ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "personId")
+	private User user;
 
 	private static final long serialVersionUID = 1L;
 
@@ -84,4 +89,11 @@ public class Money implements Serializable {
 		this.credit = credit;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
