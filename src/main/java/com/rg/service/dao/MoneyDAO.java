@@ -26,6 +26,14 @@ public class MoneyDAO implements Serializable {
 	}
 	
 	@Transactional
+	public Money getMoneyById(Long moneyId) {
+		log.info("Entering getMoneyById");
+		Money money = entityManager.find(Money.class, moneyId);
+		log.info("Exiting getMoneyById");
+		return money;
+	}
+	
+	@Transactional
 	public Long saveMoney(Money money) {
 		log.info("Entering saveMoney");
 		log.info("Persisting :: " + money);

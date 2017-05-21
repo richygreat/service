@@ -16,6 +16,10 @@ public class MoneyService implements Serializable {
 
 	@Inject
 	private MoneyDAO dao;
+	
+	public Money getMoneyById(Long moneyId) {
+		return dao.getMoneyById(moneyId);
+	}
 
 	public Long saveMoney(Money money) {
 		return dao.saveMoney(money);
