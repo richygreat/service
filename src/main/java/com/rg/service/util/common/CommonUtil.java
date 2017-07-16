@@ -17,9 +17,16 @@ public class CommonUtil {
 
 	public static void main(String[] args) throws Exception {
 		Money m = new Money();
-		m.setAmount(191913.31);
+		m.setAmount(506438.00);
 		m.setInterestRate(11.25);
-		System.out.println(Money.getInterestForInstIndex(m, 1));
+		m.setInstMonths(60);
+		m.setRemainInstMonths(60);
+
+		for (int i = 1; i <= 60; i++) {
+			m.setRemainInstMonths(m.getInstMonths() - i);
+			System.out.println(Money.getInterestForCurrentOutstanding(m) + "\t" + Money.getBalanceAmount(m));
+			m.setAmount(Money.getBalanceAmount(m));
+		}
 	}
 
 	public static String getCSVFromList(List<String> ls) {

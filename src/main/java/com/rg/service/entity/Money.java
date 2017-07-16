@@ -147,9 +147,8 @@ public class Money implements Serializable {
 	}
 
 	@Transient
-	public static double getInterestForInstIndex(Money money, int instIndex) {
-		return Math.round(
-				(money.getAmount() * Math.pow(1 + (money.getInterestRate() / 1200), instIndex)) - money.getAmount());
+	public static double getInterestForCurrentOutstanding(Money money) {
+		return Math.round(money.getAmount() * money.getInterestRate() / 1200);
 	}
 
 	@Transient
