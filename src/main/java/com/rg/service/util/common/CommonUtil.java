@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -22,10 +23,15 @@ public class CommonUtil {
 		m.setInstMonths(60);
 		m.setRemainInstMonths(60);
 
+		DecimalFormat f = new DecimalFormat("##.00");
+
 		for (int i = 1; i <= 60; i++) {
 			m.setRemainInstMonths(m.getInstMonths() - i);
-			System.out.println(Money.getInterestForCurrentOutstanding(m) + "\t" + Money.getBalanceAmount(m));
-			m.setAmount(Money.getBalanceAmount(m));
+			double interest = Double.valueOf(f.format(Money.getInterestForCurrentOutstanding(m)));
+			double principal = m.getEmi() - interest;
+			double balance = m.getAmount() - principal;
+			System.out.println(principal + "\t" + interest + "\t" + balance);
+			m.setAmount(balance);
 		}
 	}
 
