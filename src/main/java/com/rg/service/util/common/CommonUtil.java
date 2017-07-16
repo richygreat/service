@@ -1,12 +1,8 @@
 package com.rg.service.util.common;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,26 +10,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.net.ssl.HttpsURLConnection;
+import com.rg.service.entity.Money;
 
 public class CommonUtil {
 	public static final Logger log = Logger.getLogger(CommonUtil.class.getName());
 
 	public static void main(String[] args) throws Exception {
-		String httpsURL = "https://www.google.co.in";
-		URL myurl = new URL(httpsURL);
-		HttpsURLConnection con = (HttpsURLConnection) myurl.openConnection();
-		InputStream ins = con.getInputStream();
-		InputStreamReader isr = new InputStreamReader(ins);
-		BufferedReader in = new BufferedReader(isr);
-
-		String inputLine;
-
-		while ((inputLine = in.readLine()) != null) {
-			System.out.println(inputLine);
-		}
-
-		in.close();
+		Money m = new Money();
+		m.setAmount(191913.31);
+		m.setInterestRate(11.25);
+		System.out.println(Money.getInterestForInstIndex(m, 1));
 	}
 
 	public static String getCSVFromList(List<String> ls) {

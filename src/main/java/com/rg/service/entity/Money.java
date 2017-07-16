@@ -147,6 +147,12 @@ public class Money implements Serializable {
 	}
 
 	@Transient
+	public static double getInterestForInstIndex(Money money, int instIndex) {
+		return Math.round(
+				(money.getAmount() * Math.pow(1 + (money.getInterestRate() / 1200), instIndex)) - money.getAmount());
+	}
+
+	@Transient
 	public static double getBalanceAmount(Money money) {
 		return Math.round(
 				money.getEmi() * (1 - (1 / Math.pow(1 + (money.getInterestRate() / 1200), money.getRemainInstMonths())))
