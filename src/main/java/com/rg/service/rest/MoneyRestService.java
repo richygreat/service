@@ -72,6 +72,10 @@ public class MoneyRestService implements Serializable {
 		log.info(bean.toString());
 		Money money = new Money();
 		money.setAmount(bean.getAmount());
+		money.setEmi(bean.getEmi());
+		money.setInstMonths(bean.getInstMonths());
+		money.setInterestRate(bean.getInterestRate());
+		money.setRemainInstMonths(bean.getRemainInstMonths());
 		money.setCredit(bean.getCredit());
 		money.setDate(bean.getDate());
 		money.setDescription(bean.getDescription());

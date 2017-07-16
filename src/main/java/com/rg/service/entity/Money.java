@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 /**
  * Entity implementation class for Entity: Money
@@ -39,14 +40,6 @@ public class Money implements Serializable {
 	private User user;
 
 	private static final long serialVersionUID = 1L;
-
-	@Override
-	public String toString() {
-		return "Money [moneyId=" + moneyId + ", amount=" + amount + ", interestRate=" + interestRate + ", emi=" + emi
-				+ ", instMonths=" + instMonths + ", remainInstMonths=" + remainInstMonths + ", type=" + type + ", date="
-				+ date + ", amortStartDate=" + amortStartDate + ", description=" + description + ", credit=" + credit
-				+ ", user=" + user + "]";
-	}
 
 	public Long getMoneyId() {
 		return moneyId;
@@ -147,11 +140,13 @@ public class Money implements Serializable {
 		this.remainInstMonths = remainInstMonths;
 	}
 
+	@Transient
 	public static double getEmiAmount(Money money) {
 		return Math.round(money.getAmount() * (money.getInterestRate() / 1200)
 				/ (1 - (1 / Math.pow(1 + (money.getInterestRate() / 1200), money.getInstMonths()))));
 	}
 
+	@Transient
 	public static double getBalanceAmount(Money money) {
 		return Math.round(
 				money.getEmi() * (1 - (1 / Math.pow(1 + (money.getInterestRate() / 1200), money.getRemainInstMonths())))

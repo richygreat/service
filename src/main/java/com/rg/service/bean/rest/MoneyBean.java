@@ -7,6 +7,10 @@ public class MoneyBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long moneyId;
 	private Double amount;
+	private Double interestRate;
+	private Double emi;
+	private int instMonths;
+	private int remainInstMonths;
 	private String type;
 	private Date date;
 	private String description;
@@ -84,4 +88,37 @@ public class MoneyBean implements Serializable {
 	public void setResult(String result) {
 		this.result = result;
 	}
+
+	public Double getInterestRate() {
+		return interestRate;
+	}
+
+	public void setInterestRate(Double interestRate) {
+		this.interestRate = interestRate;
+	}
+
+	public Double getEmi() {
+		return emi;
+	}
+
+	public void setEmi(Double emi) {
+		this.emi = emi;
+	}
+
+	public int getInstMonths() {
+		return instMonths;
+	}
+
+	public void setInstMonths(int instMonths) {
+		this.instMonths = instMonths;
+	}
+
+	public int getRemainInstMonths() {
+		return remainInstMonths;
+	}
+
+	public void setRemainInstMonths(int remainInstMonths) {
+		this.remainInstMonths = remainInstMonths;
+	}
+
 }

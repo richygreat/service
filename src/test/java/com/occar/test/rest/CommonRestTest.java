@@ -15,7 +15,7 @@ import com.rg.service.bean.rest.UserBean;
 
 public class CommonRestTest {
 	private static final String HTTP_SERVICE_URL = "http://localhost:8080/service/rest";
-
+	
 	@Test
 	public void dbGetServiceTest() {
 		ResteasyClient client = new ResteasyClientBuilder().build();
@@ -39,7 +39,7 @@ public class CommonRestTest {
 		String personId = userService.saveUser(user);
 		System.out.println("User Created :: " + personId);
 		Assert.assertNotNull(personId);
-
+		
 		Response response = userService.getUser(personId);
 		System.out.println(response.readEntity(String.class));
 		Assert.assertNotNull(response);
@@ -61,5 +61,36 @@ public class CommonRestTest {
 
 		String moneyId = moneyService.saveMoney(money);
 		Assert.assertNotNull(moneyId);
+	}
+
+	@Test
+	public void loanBasicTest() {
+		ResteasyClient client = new ResteasyClientBuilder().build();
+		ResteasyWebTarget target = client.target(HTTP_SERVICE_URL);
+		
+		UserRestServiceClient userService = target.proxy(UserRestServiceClient.class);
+		UserBean user = new UserBean();
+		user.setName("Rionna");
+		user.setUserID("Rionna");
+
+		String personId = userService.saveUser(user);
+		System.out.println("User Created :: " + personId);
+		Assert.assertNotNull(personId);
+
+		MoneyRestServiceClient moneyService = target.proxy(MoneyRestServiceClient.class);
+		MoneyBean money = new MoneyBean();
+		money.setAmount(2432000.00);
+		money.setInstMonths(120);
+		money.setInterestRate(9.15);
+		money.setDate(new Date());
+		money.setDescription("Home Loan");
+		money.setType("Home Loan");
+		money.setUserID("Rionna");
+
+		String moneyId = moneyService.saveMoney(money);
+		Assert.assertNotNull(moneyId);
+		
+		LoanRestServiceClient loanService = target.proxy(LoanRestServiceClient.class);
+		loanService.getLoans(personId);
 	}
 }

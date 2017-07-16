@@ -1,6 +1,7 @@
 package com.rg.service.dao;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
@@ -10,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import com.rg.service.entity.Money;
+import com.rg.service.entity.Type;
 
 @Named
 @SessionScoped
@@ -24,7 +26,17 @@ public class MoneyDAO implements Serializable {
 	public MoneyDAO() {
 		log.info("MoneyDAO Constructor called");
 	}
-	
+
+	@Transactional
+	public List<Money> getMoneyListByType(Type type, int personId) {
+		log.info("Entering getMoneyListByType");
+		List<Money> lsMoney = entityManager
+				.createQuery("select m from Money m where m.type.typeId = " + type.getTypeId() + " and m.user.personId = " + personId, Money.class)
+				.getResultList();
+		log.info("Exiting getMoneyListByType");
+		return lsMoney;
+	}
+
 	@Transactional
 	public Money getMoneyById(Long moneyId) {
 		log.info("Entering getMoneyById");
@@ -32,7 +44,7 @@ public class MoneyDAO implements Serializable {
 		log.info("Exiting getMoneyById");
 		return money;
 	}
-	
+
 	@Transactional
 	public Long saveMoney(Money money) {
 		log.info("Entering saveMoney");

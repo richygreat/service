@@ -2,6 +2,7 @@ package com.rg.service.constant;
 
 public interface CommonConstants {
 	String TYPE_DOCUMENTS = "Documents";
+	String TYPE_LOANS = "Loans";
 	String SUCCESS = "success";
 	String FAILURE = "failure";
 	String TRIP_OPERATION_DRIVER_START = "TRIP_OPERATION_DRIVER_START";
