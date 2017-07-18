@@ -19,7 +19,7 @@ import javax.persistence.Transient;
  *
  */
 @Entity
-public class Money implements Serializable {
+public class Money implements Serializable, Cloneable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -157,4 +157,11 @@ public class Money implements Serializable {
 				money.getEmi() * (1 - (1 / Math.pow(1 + (money.getInterestRate() / 1200), money.getRemainInstMonths())))
 						/ (money.getInterestRate() / 1200));
 	}
+
+	@Transient
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+
 }
