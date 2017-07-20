@@ -1,3 +1,3 @@
 # service
 All Service based projects Rest JaxWS etc.
-Richy Invites Jenny
+Latest Feature A100002
